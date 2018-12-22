@@ -7,19 +7,19 @@ describe('tests for constructor', () => {
     const arr3 = new MyArray(1, 2);
     const arr4 = new MyArray('1');
 
-    expect(arr1.length).toEqual(0);
-    expect(arr2.length).toEqual(5);
-    expect(arr3.length).toEqual(2);
-    expect(arr3[0]).toEqual(1);
-    expect(arr3[1]).toEqual(2);
+    expect(arr1.length).toBe(0);
+    expect(arr2.length).toBe(5);
+    expect(arr3.length).toBe(2);
+    expect(arr3[0]).toBe(1);
+    expect(arr3[1]).toBe(2);
     expect(arr4.length).toBe(1);
-    expect(arr4[0]).toEqual('1');
+    expect(arr4[0]).toBe('1');
   });
 
   test('should have own property length', () => {
     const arr = new MyArray();
 
-    expect(arr.hasOwnPropObject.prototype.hasOwnProperty.callerty('length')).toBeTruthy();
+    expect(Object.prototype.hasOwnProperty.call(arr, 'length')).toBeTruthy();
   });
 
   test('should has a constructor in MyArray ', () => {
