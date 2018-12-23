@@ -37,8 +37,8 @@ class MyArray {
     }
     return mapArr;
   }
-  sort(callback, ...arg) {
-    if (arguments.length === 1 && typeof callback === 'function') {
+  sort(callback) {
+    if (this.length === 1 && typeof callback === 'function') {
       for (let i = 0; i < this.length - 1; i++) {
         for (let j = 0; j < this.length - 1; j++) {
           if (!(callback(this[j], this[j + 1]) <= 0)) {
@@ -48,7 +48,7 @@ class MyArray {
           }
         }
       }
-    } else if (arg.length === 0) {
+    } else if (this.length === 0) {
       for (let i = 0; i < this.length - 1; i++) {
         for (let j = 0; j < this.length - i; j++) {
           if (String(this[j]) > String(this[j + 1])) {
@@ -82,7 +82,7 @@ class MyArray {
   }
 
   toString() {
-    let str = '';
+    let str = ',';
 
     for (let i = 0; i < this.length; i++) {
       if (i === this.length - 1) {
@@ -94,10 +94,10 @@ class MyArray {
     return str;
   }
 
-  reduce(callback, currentValue = 0, ...arg) {
+  reduce(callback, currentValue = 0) {
     let result = currentValue;
 
-    if (arg.length > 0 && typeof callback === 'function') {
+    if (this.length > 0 && typeof callback === 'function') {
       for (let i = 0; i < this.length; i++) {
         result = callback.call(result, this[i], i, this);
       }
