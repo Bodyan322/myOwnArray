@@ -94,16 +94,22 @@ class MyArray {
     return str;
   }
 
-  reduce(callback, currentValue = 0) {
-    let result = currentValue;
-
-    if (this.length > 0 && typeof callback === 'function') {
-      for (let i = 0; i < this.length; i++) {
-        result = callback.call(result, this[i], i, this);
-      }
+  reduce(callback, initialValue) {
+    if (this.length === 0 && !initialValue) {
+      throw new TypeError('arr\'s empty and without initialValue');
+    } else if (this.length === 0 && initialValue) {
+      return initialValue;
+    } else if (this.length === 1 && !initialValue) {
+      return this[0];
     }
 
-    return result;
+    let acc = initialValue || initialValue !== undefined ? initialValue : this[0];
+    let i = initialValue || initialValue !== undefined ? 0 : 1;
+
+    for (i; i < this.length; i++) {
+      acc = callback(acc, this[i], i, this);
+    }
+    return acc;
   }
   filter(callback, ...arg) {
     const arrFiltered = new MyArray();
