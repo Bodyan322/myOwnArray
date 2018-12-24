@@ -82,14 +82,19 @@ class MyArray {
   }
 
   toString() {
-    let str = ',';
+    let str = String();
+
+    if (this.length === 0 || this.length === undefined) {
+      return str;
+    }
 
     for (let i = 0; i < this.length; i++) {
       if (i === this.length - 1) {
-        str += this[i];
-        break;
+        str += `${this[i]}`;
       }
-      str += `${this[i]}`;
+      else {
+        str += `${this[i]},`;
+      }
     }
     return str;
   }
