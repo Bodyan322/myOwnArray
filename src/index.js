@@ -1,11 +1,15 @@
 
 
 class MyArray {
-  constructor(...arg) {
-    for (let i = 0; i < arg.length; i++) {
-      this[i] = arg[i];
+  constructor(...rest) {
+    if (rest.length === 1 && typeof rest[0] === 'number') {
+      this.length = rest[0];
+    } else {
+      for (let i = 0; i < rest.length; i++) {
+        this[i] = rest[i];
+      }
+      this.length = arguments.length;
     }
-    this.length = arg.length;
   }
   push(...arg) {
     for (let i = 0; i < arg.length; i++) {
@@ -82,19 +86,14 @@ class MyArray {
   }
 
   toString() {
-    let str = String();
-
-    if (this.length === 0 || this.length === undefined) {
-      return str;
-    }
+    let str = '';
 
     for (let i = 0; i < this.length; i++) {
       if (i === this.length - 1) {
-        str += `${this[i]}`;
+        str += this[i];
+        break;
       }
-      else {
-        str += `${this[i]},`;
-      }
+      str += `${this[i]},`;
     }
     return str;
   }
