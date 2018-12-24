@@ -32,12 +32,16 @@ class MyArray {
   }
 
 
-  map(callback) {
+  map(callback, thisArg) {
     const mapArr = new MyArray();
 
-    for (let i = 0; i < this.length; i++) {
-      mapArr[i] = callback(this[i], i, this);
-      mapArr.length += 1;
+    if (arguments.length > 0 && typeof callback === 'function') {
+      for (let i = 0; i < this.length; i++) {
+        mapArr[i] = callback.call(thisArg, this[i], i, this);
+        mapArr.length += 1;
+      }
+    } else {
+      throw new TypeError('callback is not a function');
     }
     return mapArr;
   }
