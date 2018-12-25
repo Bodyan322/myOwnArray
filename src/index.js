@@ -70,22 +70,30 @@ class MyArray {
 
     return this;
   }
-  static from(...arg) {
+  static from(arr, callback, thisArg) {
     const arrFromed = new MyArray();
 
-    if (arg.length === 1 && typeof arg[0] === 'string') {
-      for (let i = 0; i < arg[0].length; i++) {
-        arrFromed[i] = arg[0][i];
-      }
-      arrFromed.length = arg[0].length;
-    } else {
-      for (let i = 0; i < arg.length; i++) {
-        arrFromed[i] = arg[i];
-      }
-      arrFromed.length = arg.length;
+    if (arr.length === 0 || arr === 0) {
+      throw new TypeError('Elements or length of array is not defined');
+    } else if (arr === null) {
+      throw new TypeError('Your array is to be null');
     }
 
-
+    if (callback && thisArg) {
+      for (let i = 0; i < arr.length; i++) {
+        arrFromed.length += 1;
+        arrFromed[i] = callback.call(thisArg, arr[i], i, arr);
+      }
+    } else if (callback) {
+      for (let i = 0; i < arr.length; i++) {
+        arrFromed.length += 1;
+        arrFromed[i] = callback(arr[i], i, arr);
+      }
+    } else {
+      for (let i = 0; i < arr.length; i++) {
+        arrFromed.push(arr[i]);
+      }
+    }
     return arrFromed;
   }
 
