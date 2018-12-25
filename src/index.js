@@ -142,6 +142,13 @@ class MyArray {
 
     return arrFiltered;
   }
+
+  * [Symbol.iterator]() {
+    for (let i = 0; i < this.length; i++) {
+      yield this[i];
+    }
+  }
+
   forEach(callback, ...arg) {
     if (arg.length > 0 && typeof callback === 'function') {
       for (let i = 0; i < this.length; i++) {
