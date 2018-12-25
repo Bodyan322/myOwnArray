@@ -149,11 +149,15 @@ class MyArray {
     }
   }
 
-  forEach(callback, ...arg) {
-    if (arg.length > 0 && typeof callback === 'function') {
+  forEach(callback, thisArg) {
+    const context = thisArg ? thisArg : this;
+
+    if (typeof callback === 'function') {
       for (let i = 0; i < this.length; i++) {
-        this[i] = callback(this[i], i, this);
+        callback.call(context, this[i], i, this);
       }
+    } else {
+      throw new TypeError('callback is not a function');
     }
   }
 }
