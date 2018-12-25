@@ -128,15 +128,13 @@ class MyArray {
     }
     return acc;
   }
-  filter(callback, ...arg) {
+  filter(callback, thisArg) {
     const arrFiltered = new MyArray();
 
-    if (arg.length > 0 && typeof callback === 'function') {
-      for (let i = 0; i < this.length; i++) {
-        if (callback(this[i], i, this)) {
-          arrFiltered[i] = this[i];
-          arrFiltered.length += 1;
-        }
+    for (let i = 0; i < this.length; i++) {
+      if (callback.call(thisArg, this[i], i, this)) {
+        arrFiltered[arrFiltered.length] = this[i];
+        arrFiltered.length += 1;
       }
     }
 
