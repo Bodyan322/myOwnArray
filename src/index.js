@@ -150,14 +150,8 @@ class MyArray {
   }
 
   forEach(callback, thisArg) {
-    const context = thisArg ? thisArg : this;
-
-    if (typeof callback === 'function') {
-      for (let i = 0; i < this.length; i++) {
-        callback.call(context, this[i], i, this);
-      }
-    } else {
-      throw new TypeError('callback is not a function');
+    for (let i = 0; i < this.length; i++) {
+      callback.call(thisArg, this[i], i, this);
     }
   }
 }
