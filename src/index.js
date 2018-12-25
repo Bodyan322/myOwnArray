@@ -149,11 +149,9 @@ class MyArray {
     }
   }
 
-  forEach(callback, ...arg) {
-    if (arg.length > 0 && typeof callback === 'function') {
-      for (let i = 0; i < this.length; i++) {
-        this[i] = callback(this[i], i, this);
-      }
+  forEach(callback, thisArg) {
+    for (let i = 0; i < this.length; i++) {
+      callback.call(thisArg, this[i], i, this);
     }
   }
 }
