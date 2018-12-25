@@ -160,6 +160,19 @@ class MyArray {
     }
     return undefined;
   }
+  slice(begin, end) {
+    const arrSliced = new MyArray();
+    let startValue = begin ? begin : 0;
+    let endValue = end ? end : this.length;
+
+    startValue = begin < 0 ? this.length + begin : startValue;
+    endValue = end < 0 ? this.length + end : endValue;
+
+    for (let i = startValue; i < endValue; i++) {
+      arrSliced.push(this[i]);
+    }
+    return arrSliced;
+  }
 }
 
 
