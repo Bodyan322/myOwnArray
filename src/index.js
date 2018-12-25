@@ -46,28 +46,29 @@ class MyArray {
     return mapArr;
   }
   sort(callback) {
-    if (this.length === 1 && typeof callback === 'function') {
+    if (callback) {
       for (let i = 0; i < this.length - 1; i++) {
         for (let j = 0; j < this.length - 1; j++) {
-          if (!(callback(this[j], this[j + 1]) <= 0)) {
+          if (callback(this[j], this[j + 1]) > 0) {
             const max = this[j];
             this[j] = this[j + 1];
             this[j + 1] = max;
           }
         }
       }
-    } else if (this.length === 0) {
+    } else if (arguments.length === 0) {
       for (let i = 0; i < this.length - 1; i++) {
         for (let j = 0; j < this.length - i; j++) {
-          if (String(this[j]) > String(this[j + 1])) {
+          if (`${this[j]}` > `${this[j + 1]}`) {
             const max = this[j];
             this[j] = this[j + 1];
             this[j + 1] = max;
           }
         }
       }
+    } else {
+      throw new TypeError('callback is not a function');
     }
-
     return this;
   }
   static from(arr, callback, thisArg) {
