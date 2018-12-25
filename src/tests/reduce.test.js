@@ -21,7 +21,7 @@ describe('tests for method reduce', () => {
     const mockCallback = jest.fn();
     arr.reduce(mockCallback);
 
-    expect(arr).toEqual(arr2(1, 2, 3));
+    expect(arr).toEqual(new MyArray(1, 2, 3));
   });
 
   test(`If callback is not a function the error 
@@ -61,7 +61,7 @@ describe('tests for method reduce', () => {
     expect(callReduceOnEmptyArray).toThrow(TypeError);
   });
 
-  test.only('the number of callback function calls should be equal to the arr.length with init value and arr.length-1 without', () => {
+  test('the number of callback function calls should be equal to the arr.length with init value and arr.length-1 without', () => {
     const arr = new MyArray(1, 2, 3, 5);
     const mockCallbackWithInitValue = jest.fn();
     const mockCallbackWithOutInitValue = jest.fn();
