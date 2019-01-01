@@ -20,12 +20,11 @@ class MyArray {
   }
 
   pop() {
-    const deletedElem = this[this.length - 1];
-
     if (this.length === 0) {
-      return undefined;
+      return;
     }
 
+    const deletedElem = this[this.length - 1];
     delete this[this.length - 1];
     this.length = this.length - 1;
     return deletedElem;
@@ -33,80 +32,50 @@ class MyArray {
 
 
   map(callback, thisArg) {
-    const mapArr = new MyArray();
+    const arr = new MyArray();
 
-    if (arguments.length > 0 && typeof callback === 'function') {
-      for (let i = 0; i < this.length; i++) {
-        mapArr[i] = callback.call(thisArg, this[i], i, this);
-        mapArr.length += 1;
-      }
-    } else {
-      throw new TypeError('callback is not a function');
+    for (let i = 0; i < this.length; i++) {
+      arr[i] = callback.call(thisArg, this[i], i, this);
+      arr.length += 1;
     }
-    return mapArr;
+    return arr;
   }
   sort(callback) {
-    if (callback) {
-      for (let i = 0; i < this.length - 1; i++) {
-        for (let j = 0; j < this.length - 1; j++) {
-          if (callback(this[j], this[j + 1]) > 0) {
-            const max = this[j];
-            this[j] = this[j + 1];
-            this[j + 1] = max;
-          }
+    for (let i = 0; i < this.length - 1; i++) {
+      for (let j = 0; j < this.length - 1; j++) {
+        if (callback && callback(this[j], this[j + 1]) > 0) {
+          const max = this[j];
+          this[j] = this[j + 1];
+          this[j + 1] = max;
+        } else if (!callback && `${this[j]}` > `${this[j + 1]}`) {
+          const max = this[j];
+          this[j] = this[j + 1];
+          this[j + 1] = max;
         }
       }
-    } else if (arguments.length === 0) {
-      for (let i = 0; i < this.length - 1; i++) {
-        for (let j = 0; j < this.length - i; j++) {
-          if (`${this[j]}` > `${this[j + 1]}`) {
-            const max = this[j];
-            this[j] = this[j + 1];
-            this[j + 1] = max;
-          }
-        }
-      }
-    } else {
-      throw new TypeError('callback is not a function');
     }
     return this;
   }
   static from(arr, callback, thisArg) {
     const arrFromed = new MyArray();
 
-    if (arr.length === 0 || arr === 0) {
-      throw new TypeError('Elements or length of array is not defined');
-    } else if (arr === null) {
-      throw new TypeError('Your array is to be null');
+    for (let i = 0; i < arr.length; i++) {
+      if (arr && typeof callback === 'function') {
+        arrFromed[i] = callback.call(thisArg, arr[i], i, arr);
+      } else if (arr) {
+        arrFromed[i] = arr[i];
+      }
+      arrFromed.length += 1;
     }
 
-    if (callback && thisArg) {
-      for (let i = 0; i < arr.length; i++) {
-        arrFromed.length += 1;
-        arrFromed[i] = callback.call(thisArg, arr[i], i, arr);
-      }
-    } else if (callback) {
-      for (let i = 0; i < arr.length; i++) {
-        arrFromed.length += 1;
-        arrFromed[i] = callback(arr[i], i, arr);
-      }
-    } else {
-      for (let i = 0; i < arr.length; i++) {
-        arrFromed.push(arr[i]);
-      }
-    }
     return arrFromed;
   }
 
   toString() {
-    let str = '';
+    let str = this.length === 0 ? '' : this[0];
 
-    for (let i = 0; i < this.length; i++) {
-      if (i === this.length - 1) {
-        str += this[i];
-        break;
-      }
-      str += `${this[i]},`;
+    for (let i = 1; i < this.length; i++) {
+      str += `,${this[i]}`;
     }
     return str;
   }
@@ -116,8 +85,6 @@ class MyArray {
       throw new TypeError('arr\'s empty and without initialValue');
     } else if (this.length === 0 && initialValue) {
       return initialValue;
-    } else if (this.length === 1 && !initialValue) {
-      return this[0];
     }
 
     let acc = initialValue || initialValue !== undefined ? initialValue : this[0];
@@ -158,7 +125,6 @@ class MyArray {
         return this[i];
       }
     }
-    return undefined;
   }
   slice(begin, end) {
     const arrSliced = new MyArray();
