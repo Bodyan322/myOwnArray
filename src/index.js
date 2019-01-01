@@ -21,7 +21,7 @@ class MyArray {
 
   pop() {
     if (this.length === 0) {
-      return;
+      return undefined;
     }
 
     const deletedElem = this[this.length - 1];
