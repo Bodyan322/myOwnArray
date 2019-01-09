@@ -8,7 +8,7 @@ class MyArray {
       for (let i = 0; i < rest.length; i++) {
         this[i] = rest[i];
       }
-      this.length = arguments.length;
+      this.length = rest.length;
     }
   }
   push(...arg) {
