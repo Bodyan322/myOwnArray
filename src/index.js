@@ -125,14 +125,13 @@ class MyArray {
   }
   slice(begin, end) {
     const arrSliced = new MyArray();
-    let startValue = begin ? begin : 0;
-    let endValue = end ? end : this.length;
 
-    startValue = begin < 0 ? this.length + begin : startValue;
-    endValue = end < 0 ? this.length + end : endValue;
+    const startValue = begin < 0 ? this.length + begin : begin || 0;
+    const endValue = end < 0 ? this.length + end : end || this.length;
 
     for (let i = startValue; i < endValue; i++) {
-      arrSliced.push(this[i]);
+      arrSliced[arrSliced.length] = this[i];
+      arrSliced.length += 1;
     }
     return arrSliced;
   }
