@@ -85,10 +85,9 @@ class MyArray {
       return initialValue;
     }
 
-    let acc = initialValue || initialValue !== undefined ? initialValue : this[0];
-    let i = initialValue || initialValue !== undefined ? 0 : 1;
+    let acc = initialValue !== undefined ? callback(initialValue, this[0], 0, this) : this[0];
 
-    for (i; i < this.length; i++) {
+    for (let i = 1; i < this.length; i++) {
       acc = callback(acc, this[i], i, this);
     }
     return acc;
