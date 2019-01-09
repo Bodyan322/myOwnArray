@@ -42,14 +42,14 @@ class MyArray {
   }
   sort(callback) {
     const cb = callback ? callback : (a, b) => `${a}` > `${b}`;
-      
+
     for (let i = 0; i < this.length - 1; i++) {
       for (let j = 0; j < this.length - 1; j++) {
         if (cb(this[j], this[j + 1]) > 0) {
           const max = this[j];
           this[j] = this[j + 1];
           this[j + 1] = max;
-        } 
+        }
       }
     }
     return this;
@@ -58,9 +58,9 @@ class MyArray {
     const arrFromed = new MyArray();
 
     for (let i = 0; i < arr.length; i++) {
-      if (arr && typeof callback === 'function') {
+      if (typeof callback === 'function') {
         arrFromed[i] = callback.call(thisArg, arr[i], i, arr);
-      } else if (arr) {
+      } else {
         arrFromed[i] = arr[i];
       }
       arrFromed.length += 1;
