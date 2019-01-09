@@ -26,7 +26,7 @@ class MyArray {
 
     const deletedElem = this[this.length - 1];
     delete this[this.length - 1];
-    this.length = this.length - 1;
+    this.length -= 1;
     return deletedElem;
   }
 
