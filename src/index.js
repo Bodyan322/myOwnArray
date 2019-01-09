@@ -1,14 +1,14 @@
 
 
 class MyArray {
-  constructor(...rest) {
-    if (rest.length === 1 && typeof rest[0] === 'number') {
-      this.length = rest[0];
+  constructor(...args) {
+    if (args.length === 1 && typeof args[0] === 'number') {
+      this.length = args[0];
     } else {
-      for (let i = 0; i < rest.length; i++) {
-        this[i] = rest[i];
+      for (let i = 0; i < args.length; i++) {
+        this[i] = args[i];
       }
-      this.length = arguments.length;
+      this.length = args.length;
     }
   }
   push(...arg) {
@@ -26,7 +26,7 @@ class MyArray {
 
     const deletedElem = this[this.length - 1];
     delete this[this.length - 1];
-    this.length = this.length - 1;
+    this.length -= 1;
     return deletedElem;
   }
 
