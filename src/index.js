@@ -41,17 +41,15 @@ class MyArray {
     return arr;
   }
   sort(callback) {
+    const cb = callback ? callback : (a, b) => `${a}` > `${b}`;
+      
     for (let i = 0; i < this.length - 1; i++) {
       for (let j = 0; j < this.length - 1; j++) {
-        if (callback && callback(this[j], this[j + 1]) > 0) {
+        if (cb(this[j], this[j + 1]) > 0) {
           const max = this[j];
           this[j] = this[j + 1];
           this[j + 1] = max;
-        } else if (!callback && `${this[j]}` > `${this[j + 1]}`) {
-          const max = this[j];
-          this[j] = this[j + 1];
-          this[j + 1] = max;
-        }
+        } 
       }
     }
     return this;
