@@ -6,15 +6,27 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 module.exports = {
   mode: 'development',
   entry: {
-    app: './src/index.js',
+    app: './src/index.ts'
+  },
+  module: {
+    rules: [
+      {
+        test: /\.tsx?$/,
+        use: 'ts-loader',
+        exclude: /node_modules/
+      }
+    ]
+  },
+  resolve: {
+    extensions: ['.tsx', '.ts', '.js']
   },
   devtool: 'inline-source-map',
-   devServer: {
-     contentBase: './dist'
-   },
+  devServer: {
+    contentBase: './dist'
+  },
   plugins: [
     new CleanWebpackPlugin(['dist']),
-    new UglifyJsPlugin({sourceMap: true}),
+    new UglifyJsPlugin({ sourceMap: true }),
     new HtmlWebpackPlugin({
       title: 'Development'
     })
