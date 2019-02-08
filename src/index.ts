@@ -79,7 +79,7 @@ class MyArray <T>{
     return str;
   }
 
-  reduce(callback, initialValue) {
+  reduce<U>(callback: (acc?: T|U, currentValue?: T, index?: number, array?: MyArray<T>) => T | U, initialValue?: T|U): T|U {
     if (this.length === 0 && !initialValue) {
       throw new TypeError('arr\'s empty and without initialValue');
     } else if (this.length === 0 && initialValue) {
