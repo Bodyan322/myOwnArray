@@ -112,7 +112,7 @@ class MyArray <T>{
     }
   }
 
-  forEach(callback: (value?: T, index?:), thisArg) {
+  forEach(callback: (value?: T, index?:number, array?: MyArray<T>) => void, thisArg?: any): void {
     for (let i = 0; i < this.length; i++) {
       callback.call(thisArg, this[i], i, this);
     }
