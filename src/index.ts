@@ -12,7 +12,7 @@ class MyArray <T>{
       this.length = args.length;
     }
   }
-  push(...arg) {
+  push(...arg: T[]): number {
     for (let i = 0; i < arg.length; i++) {
       this[this.length] = arg[i];
       this.length += 1;
