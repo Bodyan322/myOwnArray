@@ -93,8 +93,8 @@ class MyArray <T>{
     }
     return acc;
   }
-  filter(callback, thisArg) {
-    const arrFiltered = new MyArray();
+  filter(callback: (value?: T, index?: number, array?: MyArray<T>) => boolean, thisArg?: any): MyArray<T> {
+    const arrFiltered = new MyArray<T>();
 
     for (let i = 0; i < this.length; i++) {
       if (callback.call(thisArg, this[i], i, this)) {
@@ -112,7 +112,7 @@ class MyArray <T>{
     }
   }
 
-  forEach(callback, thisArg) {
+  forEach(callback: (value?: T, index?:), thisArg) {
     for (let i = 0; i < this.length; i++) {
       callback.call(thisArg, this[i], i, this);
     }
