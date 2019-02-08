@@ -70,8 +70,8 @@ class MyArray <T>{
     return arrFromed;
   }
 
-  toString() {
-    let str = this.length === 0 ? '' : this[0];
+  toString() : string {
+    let str: string = this.length === 0 ? '' : `${this[0]}`;
 
     for (let i = 1; i < this.length; i++) {
       str += `,${this[i]}`;
