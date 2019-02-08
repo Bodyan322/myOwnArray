@@ -124,8 +124,8 @@ class MyArray <T>{
       }
     }
   }
-  slice(begin, end) {
-    const arrSliced = new MyArray();
+  slice(begin?: number, end?: number): MyArray<T> {
+    const arrSliced = new MyArray<T>();
 
     const startValue = begin < 0 ? this.length + begin : begin || 0;
     const endValue = end < 0 ? this.length + end : end || this.length;
