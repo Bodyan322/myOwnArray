@@ -32,8 +32,8 @@ class MyArray <T>{
   }
 
 
-  map(callback, thisArg) {
-    const arr = new MyArray();
+  map<U>(callback: (value?: T, index?: number, array?: MyArray<T>) => U, thisArg?: any) {
+    const arr = new MyArray<U>();
 
     for (let i = 0; i < this.length; i++) {
       arr[i] = callback.call(thisArg, this[i], i, this);
