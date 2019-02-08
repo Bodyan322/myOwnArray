@@ -20,7 +20,7 @@ class MyArray <T>{
     return this.length;
   }
 
-  pop() {
+  pop(): T | undefined {
     if (this.length === 0) {
       return undefined;
     }
