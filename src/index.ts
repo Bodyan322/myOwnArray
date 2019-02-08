@@ -41,8 +41,8 @@ class MyArray <T>{
     }
     return arr;
   }
-  sort(callback) {
-    const cb = callback ? callback : (a, b) => `${a}` > `${b}`;
+  sort(callback?: (a?: T, b?: T) => number): this {
+    const cb = callback ? callback : (a: T, b: T) => `${a}` > `${b}`;
 
     for (let i = 0; i < this.length - 1; i++) {
       for (let j = 0; j < this.length - 1; j++) {
